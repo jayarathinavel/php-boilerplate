@@ -6,4 +6,5 @@
     'LIB_PATH' => APPLICATION_PATH.'/lib/',
   ];
   require $config['LIB_PATH'].'functions.php';
+  require 'database.php';
 ?>
