@@ -7,6 +7,6 @@
   ];
   require 'database.php';
   require $config['LIB_PATH'].'functions.php';
-  require $config['MODEL_PATH'].'constants.php';
-  require $config['MODEL_PATH'].'variables.php';
+  require $config['LIB_PATH'].'constants.php';
+  require $config['LIB_PATH'].'variables.php';
 ?>

@@ -1,5 +1,5 @@
 <?php
-    //Fetches a values from 'varaibales' table. eg : varibales['key'] results in 'value'
+    //Fetches a values from 'varibales' table. eg : varibales['key'] results in 'value'
     $variablesSql = "SELECT `name`,`value` FROM `variables`";
     $variablesResult = $conn->query($variablesSql);
     if ($variablesResult->num_rows > 0) {
