@@ -14,10 +14,11 @@
   if (file_exists($controller)) {
     require $controller;
   }
+
+  $mainContent = $fileNotFound;
   if (file_exists($view)) {
-    require $view;
+    $mainContent = $view;
   }
-  else {
-    require $fileNotFound;
-  }
+  
+  include $config['VIEW_PATH'].'layout.phtml';
 ?>
