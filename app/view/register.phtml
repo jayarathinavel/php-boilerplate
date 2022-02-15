@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+        <div class="wrapper">
+            <h2 class="text-center">Sign Up</h2>
+            <p>Please fill this form to create an account.</p>
+            <form action="<?php $controller = new RegisterController; $controller -> register($conn, $model); ?>" method="post">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="bg-secondary text-light form-control <?php echo (!empty($model -> getUsername_err())) ? 'is-invalid' : ''; ?>" value="<?php echo $model -> getUsername(); ?>">
+                    <span class="invalid-feedback"><?php echo $model -> getUsername_err(); ?></span>
+                </div>    
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class=" bg-secondary text-light form-control <?php echo (!empty($model -> getPassword_err())) ? 'is-invalid' : ''; ?>" value="<?php echo $model -> getPassword(); ?>">
+                    <span class="invalid-feedback"><?php echo $model -> getPassword_err(); ?></span>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirm_password" class="bg-secondary text-light form-control <?php echo (!empty($model -> getConfirm_password_err())) ? 'is-invalid' : ''; ?>" value="<?php echo $model -> getConfirm_password(); ?>">
+                    <span class="invalid-feedback"><?php echo $model -> getConfirm_password_err(); ?></span>
+                </div>
+                <div class="form-group pt-3 pb-3">
+                    <input type="submit" class="btn btn-success" value="Submit">
+                    <input type="reset" class="btn btn-danger ml-2" value="Reset">
+                </div>
+                <p>Already have an account? <a href="login" class="text-decoration-none">Login here</a></p>
+            </form>
+        </div>
+    </div>    
+</body>
+</html>
