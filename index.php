@@ -1,5 +1,5 @@
 <?php
-  defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__).'/../app'));
+  defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__).'/app'));
   require(APPLICATION_PATH.'/config/config.php');
 
   $page = getPageName();
