@@ -13,4 +13,13 @@
     return !!preg_match('#\\b' . preg_quote($word, '#') . '\\b#i', $str);
   }
 
+  //For Logout
+  if (isset($_GET['logout'])) {
+    session_start();
+    $_SESSION = array();
+    session_destroy();
+    header("location: home");
+    exit;
+  }
+
 ?>
