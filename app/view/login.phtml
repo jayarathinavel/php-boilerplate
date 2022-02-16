@@ -3,39 +3,31 @@
 <body>
     <div style="display: flex;flex-wrap: wrap;justify-content: center;">
         <div class="wrapper">
-            <?php
-            // $isLoggedIn = $_GET['loggedIn'];
-            // if($isLoggedIn == 'no'){
-            //     echo '
-            //     <div class="p-3 mb-2 bg-danger text-white p-2">You must login to continue</div>
-            //     ';  
-            // }
-            ?>
             <h2 class="text-center">Login</h2>
             <p>Please fill in your credentials to login.</p>
 
+            <form action="<?php $loginController = new LoginController; $loginController -> login($conn, $loginModel); ?>" method="post">
             <?php 
-            if(!empty($model -> getLogin_err())){
-                echo '<div class="alert alert-danger">' . $model -> getLogin_err() . '</div>';
-            }        
+                if(!empty($loginModel -> getLogin_err())){
+                    echo '<div class="alert alert-danger">' . $loginModel -> getLogin_err() . '</div>';
+                }        
             ?>
-
-            <form action="<?php $controller = new LoginController; $controller -> login($conn, $model); ?>" method="post">
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" name="username" class="bg-secondary text-light form-control <?php echo (!empty($model -> getUsername_err())) ? 'is-invalid' : ''; ?>" value="<?php echo $model -> getUsername(); ?>">
-                    <span class="invalid-feedback"><?php echo $model -> getUsername_err(); ?></span>
+                    <input type="text" name="username" class="bg-secondary text-light form-control <?php echo (!empty($loginModel -> getUsername_err())) ? 'is-invalid' : ''; ?>" value="<?php echo $loginModel -> getUsername(); ?>">
+                    <span class="invalid-feedback"><?php echo $loginModel -> getUsername_err(); ?></span>
                 </div>    
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" class="bg-secondary text-light form-control <?php echo (!empty($model -> getPassword_err())) ? 'is-invalid' : ''; ?>">
-                    <span class="invalid-feedback"><?php echo $model -> getPassword_err(); ?></span>
+                    <input type="password" name="password" class="bg-secondary text-light form-control <?php echo (!empty($loginModel -> getPassword_err())) ? 'is-invalid' : ''; ?>">
+                    <span class="invalid-feedback"><?php echo $loginModel -> getPassword_err(); ?></span>
                 </div>
                 <div class="form-group pt-3 pb-3">
                     <input type="submit" class="btn btn-success" value="Login">
                 </div>
                 <p>Don't have an account? <a href="register" class="text-decoration-none">Sign up now</a></p>
             </form>
+
         </div>
     </div>
 </body>

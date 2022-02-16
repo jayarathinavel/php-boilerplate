@@ -1,12 +1,12 @@
 <?php
-$model = new RegisterModel;
+$registerModel = new RegisterModel;
 class RegisterController{
-    function register($conn, $model){
+    function register($conn, $registerModel){
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(empty(trim($_POST["username"]))){
-                $model -> setUsername_err('Please enter a username.');
+                $registerModel -> setUsername_err('Please enter a username.');
             } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
-                $model -> setUsername_err('Username can only contain letters, numbers, and underscores.');
+                $registerModel -> setUsername_err('Username can only contain letters, numbers, and underscores.');
             } else{
                 $sql = "SELECT id FROM users WHERE username = ?";
                 if($stmt = mysqli_prepare($conn, $sql)){
@@ -15,9 +15,9 @@ class RegisterController{
                     if(mysqli_stmt_execute($stmt)){
                         mysqli_stmt_store_result($stmt);
                         if(mysqli_stmt_num_rows($stmt) == 1){
-                            $model -> setUsername_err('This username is already taken.');
+                            $registerModel -> setUsername_err('This username is already taken.');
                         } else{
-                            $model -> setUsername(trim($_POST["username"]));
+                            $registerModel -> setUsername(trim($_POST["username"]));
                         }
                     } else{
                         echo "Oops! Something went wrong. Please try again later.";
@@ -27,26 +27,26 @@ class RegisterController{
             }
             
             if(empty(trim($_POST["password"]))){
-                $model -> setPassword_err('Please enter a password.');     
+                $registerModel -> setPassword_err('Please enter a password.');     
             } elseif(strlen(trim($_POST["password"])) < 6){
-                $model -> setPassword_err('Password must have atleast 6 characters.');
+                $registerModel -> setPassword_err('Password must have atleast 6 characters.');
             } else{
-                $model -> setPassword(trim($_POST["password"]));
+                $registerModel -> setPassword(trim($_POST["password"]));
             }
             if(empty(trim($_POST["confirm_password"]))){
-                $model -> setConfirm_password_err('Please confirm password.');     
+                $registerModel -> setConfirm_password_err('Please confirm password.');     
             } else{
-                $model -> setConfirm_password(trim($_POST["confirm_password"]));
-                if(empty($model ->getPassword_err()) && ($model ->getPassword() != $model ->getConfirm_password())){
-                    $model ->setConfirm_password_err("Password did not match.");
+                $registerModel -> setConfirm_password(trim($_POST["confirm_password"]));
+                if(empty($registerModel ->getPassword_err()) && ($registerModel ->getPassword() != $registerModel ->getConfirm_password())){
+                    $registerModel ->setConfirm_password_err("Password did not match.");
                 }
             }
-            if(empty($model ->getUsername_err()) && empty($model ->getPassword_err()) && empty($model ->getConfirm_password_err())){
+            if(empty($registerModel ->getUsername_err()) && empty($registerModel ->getPassword_err()) && empty($registerModel ->getConfirm_password_err())){
                 $sql = "INSERT INTO users (username, password) VALUES (? , ?)";
                 if($stmt = mysqli_prepare($conn, $sql)){
                     mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
-                    $param_username = $model ->getUsername();
-                    $param_password = password_hash($model ->getPassword(), PASSWORD_DEFAULT); // Creates a password hash
+                    $param_username = $registerModel ->getUsername();
+                    $param_password = password_hash($registerModel ->getPassword(), PASSWORD_DEFAULT); // Creates a password hash
                     if(mysqli_stmt_execute($stmt)){
                         header("location: login.php");
                     } else{
