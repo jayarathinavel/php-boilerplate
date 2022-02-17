@@ -9,8 +9,17 @@
             <form action="<?php $loginController = new LoginController; $loginController -> login($conn, $loginModel); ?>" method="post">
                 <?php 
                     if(!empty($loginModel -> getLogin_err())){
-                        echo '<div class="alert alert-danger">' . $loginModel -> getLogin_err() . '</div>';
+                        echo '<div class="alert alert-danger text-center">' . $loginModel -> getLogin_err() . '</div>';
                     }        
+                ?>
+
+                <?php
+                $isLoggedIn = $_GET['loggedIn'];
+                if($isLoggedIn == 'no'){
+                    echo '
+                    <div class="alert alert-danger text-center">You must login to continue</div>
+                    ';  
+                }
                 ?>
                 <div class="form-group">
                     <label>Username</label>

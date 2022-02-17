@@ -32,8 +32,14 @@
                                         session_start();
                                         $_SESSION["loggedin"] = true;
                                         $_SESSION["id"] = $id;
-                                        $_SESSION["username"] = $loginModel -> getUsername();                            
-                                        header("location: home?query=loginsuccess");
+                                        $_SESSION["username"] = $loginModel -> getUsername();
+                                        if(isset($_GET['redirectTo'])){
+                                            $redirectTo = $_GET['redirectTo'];
+                                            header("location: $redirectTo");
+                                        }
+                                        else{
+                                            header("location: home?query=loginsuccess");
+                                        }
                                     } else{
                                         $loginModel -> setLogin_err("Invalid username or password.");
                                     }
