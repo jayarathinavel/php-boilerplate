@@ -33,7 +33,7 @@
                                         $_SESSION["loggedin"] = true;
                                         $_SESSION["id"] = $id;
                                         $_SESSION["username"] = $loginModel -> getUsername();                            
-                                        header("location: home");
+                                        header("location: home?query=loginsuccess");
                                     } else{
                                         $loginModel -> setLogin_err("Invalid username or password.");
                                     }

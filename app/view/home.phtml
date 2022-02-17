@@ -5,6 +5,16 @@
     <title><?php echo $constants['APP_TITLE']; ?></title>
   </head>
   <body>
+    <?php
+      if(isset($_GET['query']) && ($_GET['query']) == 'loginsuccess'){
+        echo '
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <div class="text-center"> You are logged in successfully.</div> 
+          </div>
+        ';
+      }
+    ?>    
     <?php helloWorld(); echo ' And this is from Model : '.$title ;?>
     <br>
     <?php echo 'A value from Variables.php : '. $variables['variableTest']; ?>
