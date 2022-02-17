@@ -14,7 +14,7 @@
   }
 
   //For Logout
-  if (isset($_GET['logout'])) {
+  if (isset($_GET['query']) && ($_GET['query']) == 'logout' ) {
     session_start();
     $_SESSION = array();
     session_destroy();
