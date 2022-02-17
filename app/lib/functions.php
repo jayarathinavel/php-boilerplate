@@ -22,4 +22,13 @@
     exit;
   }
 
+  function isLoggedIn(){
+    session_start();
+    $isLoggedIn = false;
+    if(isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] === true){
+      $isLoggedIn = true;
+    }
+    return $isLoggedIn;
+  }
+
 ?>
