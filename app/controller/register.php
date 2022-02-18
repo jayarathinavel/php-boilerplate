@@ -48,7 +48,7 @@ class RegisterController{
                     $param_username = $registerModel ->getUsername();
                     $param_password = password_hash($registerModel ->getPassword(), PASSWORD_DEFAULT); // Creates a password hash
                     if(mysqli_stmt_execute($stmt)){
-                        header("location: login.php");
+                        header("location: login");
                     } else{
                         echo "Oops! Something went wrong. Please try again later.";
                     }
