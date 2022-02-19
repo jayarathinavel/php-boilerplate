@@ -1,8 +1,8 @@
 <?php
   defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__).'/../app'));
   require(APPLICATION_PATH.'/config/config.php');
-
-  $page = getPageName();
+  $functions = new Functions;
+  $page = $functions -> getPageName();
   $model = $config['MODEL_PATH'].$page.'.php';
   $view = $config['VIEW_PATH'].$page.'.phtml';
   $controller = $config['CONTROLLER_PATH'].$page.'.php';
