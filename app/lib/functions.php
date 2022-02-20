@@ -45,14 +45,23 @@
 
     function themeSpecific($conn){
       $theme = $this -> getCurrentTheme($conn);
-      if($theme == 'default'){
+      if($theme == 'default' || $theme == 'cerulean' ){
         $class = [
           'navbar' => 'navbar fixed-top navbar-expand-lg navbar-dark bg-dark',
           'navbar-btn' => '',
           'form-fields' => '',
         ];
-        return $class;
       }
+
+      elseif($theme == 'light' ){
+        $class = [
+          'navbar' => 'navbar fixed-top navbar-expand-lg navbar-light bg-light',
+          'navbar-btn' => '',
+          'form-fields' => '',
+          'footer-bar' => 'border border-top bg-light text-dark alignCenter',
+        ];
+      }
+      return $class;
     }
 
     function getCurrentTheme($conn){

@@ -12,6 +12,7 @@
 <?php 
     $classes = $functions -> themeSpecific($conn);
     $formFields = isset($classes['form-fields']) ? $classes['form-fields'] : 'bg-secondary text-light';
+    $footerClass = isset($classes['footer-bar']) ? $classes['footer-bar'] : 'bg-dark text-light alignCenter';
 ?>
 <body>
     <div class="layout-container">
@@ -78,7 +79,7 @@
             ?>
         </section>
         <footer>
-            <div class="bg-dark text-light alignCenter">
+            <div class="<?php echo $footerClass; ?>">
                 Footer
             </div>
         </footer>
