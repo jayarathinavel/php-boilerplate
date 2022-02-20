@@ -30,7 +30,7 @@
       }
     }
 
-    function getLoginAndLogoutMessage(){
+    function getSuccessMessage(){
       if(isset($_GET['message']) && $_GET['message'] === 'loginSuccess'){
         $message = 'You are logged in Successfully';
       }
@@ -40,7 +40,10 @@
       elseif(isset($_GET['message']) && $_GET['message'] === 'passwordChangeSuccess'){
         $message = 'Password Changed Successfully, please re-login again.';
       }
-      return $message;
+      elseif(isset($_GET['message']) && $_GET['message'] === 'themeChanged'){
+        $message = 'Theme Changed Successfully';
+      }
+        return $message;
     }
 
     function themeSpecific($conn){
@@ -56,7 +59,7 @@
       elseif($theme == 'light' ){
         $class = [
           'navbar' => 'navbar fixed-top navbar-expand-lg navbar-light bg-light',
-          'navbar-btn' => '',
+          'navbar-btn' => 'btn',
           'form-fields' => '',
           'footer-bar' => 'border border-top bg-light text-dark alignCenter',
         ];
@@ -69,5 +72,23 @@
       $row = $query -> fetch_assoc();
       return $row['value'];
     }
+
+    function changeTheme($theme, $conn){
+      $sql = "UPDATE variables SET value ='$theme' WHERE name='theme'";
+      if ($conn->query($sql) === TRUE) {
+        header("location: dashboard?message=themeChanged");
+      } else {
+        header("location: dashboard?message=themeChangeFailed&error=$conn->error;");
+      }
+      $conn->close();
+    }
+
+    function getErrorMessage(){
+      if(isset($_GET['message']) && $_GET['message'] === 'themeChangeFailed'){
+        $message = 'Failed to Change Theme, Error is : '.$_GET['error'];
+      }
+      return $message;
+    }
+
   }
 ?>

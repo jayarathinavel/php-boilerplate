@@ -9,4 +9,6 @@
   require $config['LIB_PATH'].'constants.php';
   require $config['LIB_PATH'].'variables.php';
   require $config['LIB_PATH'].'functions.php';
+  $functions = new Functions;
+  require $config['LIB_PATH'].'query-string.php';
 ?>
