@@ -34,16 +34,31 @@
       if(isset($_GET['message']) && $_GET['message'] === 'loginSuccess'){
         $message = 'You are logged in Successfully';
       }
-
       elseif(isset($_GET['message']) && $_GET['message'] === 'logoutSuccess'){
         $message = 'You are logged out Successfully';
       }
-
       elseif(isset($_GET['message']) && $_GET['message'] === 'passwordChangeSuccess'){
         $message = 'Password Changed Successfully, please re-login again.';
       }
-
       return $message;
+    }
+
+    function themeSpecific($conn){
+      $theme = $this -> getCurrentTheme($conn);
+      if($theme == 'default'){
+        $class = [
+          'navbar' => 'navbar fixed-top navbar-expand-lg navbar-dark bg-dark',
+          'navbar-btn' => '',
+          'form-fields' => '',
+        ];
+        return $class;
+      }
+    }
+
+    function getCurrentTheme($conn){
+      $query = $conn -> query("SELECT `value` FROM `variables` WHERE `name`='theme'");
+      $row = $query -> fetch_assoc();
+      return $row['value'];
     }
   }
 ?>

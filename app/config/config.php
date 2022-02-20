@@ -6,7 +6,7 @@
     'LIB_PATH' => APPLICATION_PATH.'/lib/',
   ];
   require 'database.php';
-  require $config['LIB_PATH'].'functions.php';
   require $config['LIB_PATH'].'constants.php';
   require $config['LIB_PATH'].'variables.php';
+  require $config['LIB_PATH'].'functions.php';
 ?>

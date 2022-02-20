@@ -1,7 +1,15 @@
-body{
-    background-color: aqua;
+.alignCenter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.active {
-    text-decoration: none;
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
 }
