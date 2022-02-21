@@ -30,6 +30,13 @@
       }
     }
 
+    function getUserName(){
+      if($this -> isLoggedIn()){
+        $username = $_SESSION["username"];
+      }
+      return $username;
+    }
+
     function getSuccessMessage(){
       if(isset($_GET['message']) && $_GET['message'] === 'loginSuccess'){
         $message = 'You are logged in Successfully';
@@ -68,13 +75,28 @@
     }
 
     function getCurrentTheme($conn){
-      $query = $conn -> query("SELECT `value` FROM `variables` WHERE `name`='theme'");
-      $row = $query -> fetch_assoc();
-      return $row['value'];
+      if($this -> isLoggedIn()){
+        $username = $this -> getUserName();
+        $query = $conn -> query("SELECT `theme` FROM `users` WHERE `username`='$username'");
+        $row = $query -> fetch_assoc();
+        $theme = $row['theme'];
+      }
+      else{
+        $query = $conn -> query("SELECT `value` FROM `variables` WHERE `name`='theme'");
+        $row = $query -> fetch_assoc();
+        $theme = $row['value'];
+      }
+      if($theme === 'light' || $theme === 'dark'){
+        return $theme;
+      }
+      else{
+        return 'light';
+      }
     }
 
     function changeTheme($theme, $conn){
-      $sql = "UPDATE variables SET value ='$theme' WHERE name='theme'";
+      $username = $this -> getUserName();
+      $sql = "UPDATE users SET theme ='$theme' WHERE username='$username'";
       if ($conn->query($sql) === TRUE) {
         header("location: dashboard?message=themeChanged");
       } else {

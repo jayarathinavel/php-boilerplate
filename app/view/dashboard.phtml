@@ -43,31 +43,6 @@
     </div>
 </div>
 
-<!-- Change Theme Modal -->
-<div class="modal fade" id="changeTheme" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="changeThemeLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="changeThemeLabel">Change Theme</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body alignCenter">
-          <ul class="list-unstyled">
-            <li>
-                <a href="dashboard?query=changeTheme&theme=dark" class="text-decoration-none"> Dark Theme </a>
-            </li>
-            <li>
-                <a href="dashboard?query=changeTheme&theme=light" class="text-decoration-none"> Light Theme </a>
-            </li>
-          </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Reset Password Error Message -->
 <?php
     if(($authorizationModel -> getNewPasswordErr()) !== null){
@@ -77,18 +52,33 @@
         echo '<div class="alert alert-danger text-center">' .$authorizationModel -> getConfirm_password_err(). '</div>';
     }
 ?>
+
 <!-- Content -->
 <div class="panel m-3">
     <div id="gridcontainer">
         <div class="row grid-row">
+            <!-- Side Menu -->
             <div class="col-sm-3 mt-3">
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Reset Password</a>
-                    <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#changeTheme">Change Theme</a>
+                    <div class="dropdown">
+                        <a href="#" class="list-group-item list-group-item-action dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Change Theme
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a href="dashboard?query=changeTheme&theme=dark" class="dropdown-item <?php echo $functions -> getCurrentTheme($conn) === 'dark' ? ' disabled' : ''; ?>"> Dark Theme </a>
+                            </li>
+                            <li>
+                                <a href="dashboard?query=changeTheme&theme=light" class="dropdown-item <?php echo $functions -> getCurrentTheme($conn) === 'light' ? ' disabled' : ''; ?>"> Light Theme </a>
+                            </li>
+                        </ul>
+                    </div>
                     <a href="#" class="list-group-item list-group-item-action">A third link item</a>
                     <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
                 </div>
             </div>
+            <!-- Main Content -->
             <div class="col-sm-9 mt-3">
                 <div class="card">
                     <div class="card-body">
