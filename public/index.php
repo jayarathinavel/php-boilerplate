@@ -3,9 +3,9 @@
   require(APPLICATION_PATH.'/config/config.php');
   $page = $functions -> getPageName();
   $model = $config['MODEL_PATH'].$page.'.php';
-  $view = $config['VIEW_PATH'].$page.'.phtml';
+  $view = $config['VIEW_PATH'].$page.'.php';
   $controller = $config['CONTROLLER_PATH'].$page.'.php';
-  $fileNotFound = $config['VIEW_PATH'].'404.phtml';
+  $fileNotFound = $config['VIEW_PATH'].'404.php';
 
   if(file_exists($model)){
     require $model;
@@ -19,5 +19,5 @@
     $mainContent = $view;
   }
   
-  include $config['VIEW_PATH'].'layout.phtml';
+  include $config['VIEW_PATH'].'layout.php';
 ?>
