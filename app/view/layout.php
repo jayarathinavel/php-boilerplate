@@ -8,6 +8,9 @@
     <link rel="icon" type="image/x-icon" href="resources/favicon.png">
     <link href="resources/stylesheet.css" rel="stylesheet">
     <link href="resources/themes/<?php echo $functions -> getCurrentTheme($conn); ?>/stylesheet.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="resources/script-top.js"></script>
 </head>
 <?php 
     $classes = $functions -> themeSpecific($conn);
